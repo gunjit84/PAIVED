@@ -1,0 +1,90 @@
+function listview() {
+	var userid = $("#uid").val();
+	var dataString = '&uid=' + userid;
+	$.ajax({
+		type: "POST",
+		url: "/view_mentor_profile_json",
+		data: dataString,
+		cache: true,
+		success: function(data) {
+			$("#first_name").val(data.records[0].first_name);
+			$("#last_name").val(data.records[0].last_name);
+			$("#mentor_phone_code").val(data.records[0].country_code).trigger("change");
+			$("#mentor_phone_number").val(data.records[0].phone_number);
+			$("#mentor_address").val(data.records[0].street_address_line_one);
+			$("#mentor_ethncity").val(data.records[0].ethnicity).trigger("change");
+			if (data.records[0].city != '' && data.records[0].city != null && data.records[0].city != 'null') {
+				$("#mentor__city").html('<option value="' + data.records[0].city + '"></option>');
+			}
+			if (data.records[0].postal_code != '' && data.records[0].postal_code != null && data.records[0].postal_code != 'null') {
+				$("#mentor_zipcode").html('<option value="' + data.records[0].postal_code + '"></option>');
+			}
+			if (data.records[0].state_or_province != '' && data.records[0].state_or_province != null && data.records[0].state_or_province != 'null') {
+				$("#mentor_country").html('<option value="' + data.records[0].state_or_province + '"></option>');
+			}
+			if (data.records[0].languages != '' && data.records[0].languages != null && data.records[0].languages != 'null') {
+				var languagesarray = data.records[0].languages.split(",");
+				$("#mentor_language").val(languagesarray).trigger("change");
+			}
+		}
+	});
+
+}
+-----------------------------------------------------------------------------------------------------------------------
+{
+	"records": [{
+		"id": 151,
+		"name": "ashish",
+		"first_name": "Jade test",
+		"last_name": " Alivin 1",
+		"email": "ashish.sheetal4@gmail.com",
+		"phone_number": "234324324",
+		"street_address_line_one": "house 123321",
+		"street_address_line_two": null,
+		"city": "Progreso",
+		"state_or_province": "Rensselaer",
+		"postal_code": "912",
+		"country_code": "673",
+		"gender": null,
+		"age": null,
+		"biography": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, wh",
+		"profile_image_url": {
+			"url": null
+		},
+		"approved_by_admin_id": -1,
+		"approved_by_admin_on": null,
+		"admin": false,
+		"mentor_or_mentee": "Mentor",
+		"completed_signup": false,
+		"completed_profile": false,
+		"graduated_to_mentor": false,
+		"graduated_from_mentee_id": null,
+		"signup_promotion_id": null,
+		"points": 0,
+		"level": 1,
+		"agreed_to_terms_and_conditions_on_date_and_time": "2020-01-03T14:05:07.000+05:30",
+		"agreed_to_terms_and_conditions_at_ip_address": "172.17.0.1",
+		"password_digest": "$2a$10$.Qm4Bybqr8sXDYrTXjYJS.gayRNBL7AK8GtjFWMo74vvE49ltPO5S",
+		"remember_digest": "$2a$10$EfweW5muUdojxZbOus8uBuox3IL23XwD5gx8Jqdd/rEDUg1eHNi0K",
+		"activation_digest": "$2a$10$6OvBiHtq4XeyRYaspGIk1.LztqXxmGh3P4Bq1P/jzuEhAzl2rkyLC",
+		"activated": true,
+		"activated_at": null,
+		"reset_digest": null,
+		"reset_sent_at": null,
+		"created_at": "2020-01-03T14:05:07.000+05:30",
+		"updated_at": "2020-01-07T17:56:04.000+05:30",
+		"university_id": null,
+		"stripe_uid": null,
+		"timezone": "Asia/Calcutta",
+		"desired_hourly_rate": "0.0",
+		"archived": false,
+		"archived_by_admin_id": -1,
+		"archived_by_admin_on": null,
+		"enrichment_data": null,
+		"languages": "English,Catalan",
+		"ethnicity": "Alaska Natives",
+		"specialty": "nice,Good dtyftufu"
+	}]
+}
+
+
